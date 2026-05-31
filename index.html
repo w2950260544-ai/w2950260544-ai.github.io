@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ✏️ 修改这里：网站标题 -->
+  <title>Andy — AI · 设计 · 个人成长</title>
+  <meta name="description" content="Andy 的个人博客 — 记录 AI 学习、设计灵感、工具分享和生活思考" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== 导航栏 ===== -->
+  <header class="navbar">
+    <div class="container">
+      <!-- ✏️ 修改：左侧品牌名 -->
+      <a href="index.html" class="nav-logo">
+        <span class="logo-dot"></span>Andy
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="blog.html">博客</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-theme" id="btn-theme" aria-label="切换主题">🌙</button>
+        <button class="btn-menu" id="btn-menu" aria-label="菜单">☰</button>
+      </div>
+    </div>
+  </header>
+  <!-- 移动端导航 -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">首页</a>
+    <a href="blog.html">博客</a>
+    <a href="works.html">作品</a>
+    <a href="about.html">关于</a>
+    <a href="contact.html">联系</a>
+  </nav>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container">
+        <!-- 头像区域 -->
+        <div class="hero-avatar-wrap fade-up">
+          <div class="hero-avatar">
+            <!-- ✏️ 如果有头像图片，替换下面这行：
+                 <img src="images/avatar.jpg" alt="Andy" />
+                 并删除下面的 emoji -->
+            🙂
+          </div>
+          <div class="hero-status" title="正在学习中"></div>
+        </div>
+
+        <!-- 问候语 -->
+        <p class="hero-greeting fade-up fade-up-1">Hi, I'm</p>
+
+        <!-- ✏️ 修改：你的名字 -->
+        <h1 class="hero-name fade-up fade-up-2">Andy</h1>
+
+        <!-- ✏️ 修改：个人简介 -->
+        <p class="hero-bio fade-up fade-up-3">
+          正在学习 AI、设计和个人网站制作。<br />
+          喜欢探索新工具，记录真实的学习过程和生活思考。
+        </p>
+
+        <!-- ✏️ 修改：个人标签 -->
+        <div class="hero-tags fade-up fade-up-4">
+          <span class="tag-pill">🤖 AI 学习</span>
+          <span class="tag-pill">🎨 设计</span>
+          <span class="tag-pill">✍️ 写作</span>
+          <span class="tag-pill">📷 摄影</span>
+          <span class="tag-pill">🛠️ 科技工具</span>
+          <span class="tag-pill">👗 潮流穿搭</span>
+          <span class="tag-pill">🌱 个人成长</span>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="hero-actions fade-up fade-up-5">
+          <a href="blog.html" class="btn btn-primary">阅读博客 →</a>
+          <a href="about.html" class="btn btn-outline">了解更多</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 最新文章 ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Latest Posts</p>
+            <h2 class="section-title">最新文章</h2>
+          </div>
+          <a href="blog.html" class="section-link">查看全部 →</a>
+        </div>
+        <div class="posts-grid" id="latest-posts">
+          <!-- 由 main.js 动态渲染 -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <!-- ✏️ 修改：品牌名 -->
+        <span class="footer-brand">Andy's Blog</span>
+        <nav class="footer-links">
+          <a href="blog.html">博客</a>
+          <a href="works.html">作品</a>
+          <a href="about.html">关于</a>
+          <a href="contact.html">联系</a>
+        </nav>
+        <!-- ✏️ 修改：版权年份 -->
+        <span class="footer-copy">© 2026 Andy · 用好奇心探索世界</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/posts.js"></script>
+  <script src="data/works.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

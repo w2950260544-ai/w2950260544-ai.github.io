@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文章 — Andy</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-dot"></span>Andy
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="blog.html">博客</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-theme" id="btn-theme" aria-label="切换主题">🌙</button>
+        <button class="btn-menu" id="btn-menu" aria-label="菜单">☰</button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">首页</a>
+    <a href="blog.html">博客</a>
+    <a href="works.html">作品</a>
+    <a href="about.html">关于</a>
+    <a href="contact.html">联系</a>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- 由 main.js 动态渲染文章内容 -->
+      <div id="post-container"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">Andy's Blog</span>
+        <nav class="footer-links">
+          <a href="blog.html">博客</a>
+          <a href="works.html">作品</a>
+          <a href="about.html">关于</a>
+          <a href="contact.html">联系</a>
+        </nav>
+        <span class="footer-copy">© 2026 Andy · 用好奇心探索世界</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/posts.js"></script>
+  <script src="data/works.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
