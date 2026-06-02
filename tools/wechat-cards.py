@@ -33,6 +33,13 @@ import shutil
 import subprocess
 from pathlib import Path
 
+# Windows 控制台默认 GBK，强制 UTF-8 输出，避免 emoji 报错
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 # ---------- 路径 ----------
 BLOG_ROOT = Path(__file__).resolve().parent.parent
 DECKS_DIR = BLOG_ROOT / "decks"
@@ -71,18 +78,27 @@ def find_deck_meta(filename: str) -> dict | None:
 def convert_pptx_to_images(pptx_path: Path, output_dir: Path) -> list:
     """把 PPTX 每页导出成 PNG。返回 PNG 路径列表。"""
     output_dir.mkdir(parents=True, exist_ok=True)
-    # 方案 1：尝试 PowerPoint COM（Windows + Office）
+    # 方案 1：尝试 PowerPoint COM（Windows + Office）— 逐页直接导出为 01.png
     try:
         import comtypes.client  # type: ignore
         powerpoint = comtypes.client.CreateObject("Powerpoint.Application")
-        powerpoint.Visible = 1
-        deck = powerpoint.Presentations.Open(str(pptx_path), WithWindow=False)
-        # 每页另存为 PNG
-        deck.SaveAs(str(output_dir.absolute()), 17)  # 17 = ppSaveAsPNG
+        deck = powerpoint.Presentations.Open(
+            str(pptx_path.absolute()), ReadOnly=1, WithWindow=0
+        )
+        png_paths = []
+        total = deck.Slides.Count
+        for i in range(1, total + 1):
+            out = output_dir / f"{i:02d}.png"
+            # 逐页导出，直接命名，避免中文文件名 / 时间差问题
+            deck.Slides(i).Export(str(out.absolute()), "PNG", 1600, 900)
+            png_paths.append(out)
+            print(f"   · 第 {i}/{total} 页 → {out.name}")
         deck.Close()
         powerpoint.Quit()
-        # PowerPoint 导出后是 Slide1.PNG, Slide2.PNG... 重命名为 01.png
-        return rename_slides(output_dir)
+        # 第一页复制一份作封面
+        if png_paths:
+            shutil.copy(png_paths[0], output_dir / "cover.png")
+        return png_paths
     except Exception as e:
         print(f"⚠ PowerPoint 导出失败：{e}")
 
@@ -120,20 +136,31 @@ def convert_pptx_to_images(pptx_path: Path, output_dir: Path) -> list:
 
 
 def rename_slides(output_dir: Path) -> list:
-    """把 PowerPoint 默认的 Slide1.PNG / Slide2.PNG 重命名为 01.png / 02.png。"""
-    files = sorted(output_dir.glob("Slide*.PNG"))
-    if not files:
-        files = sorted(output_dir.glob("Slide*.png"))
+    """把 PowerPoint 导出的图片（Slide1.PNG / 幻灯片1.PNG 等）统一重命名为 01.png。
+
+    兼容中英文版 PowerPoint：只要文件名里含数字就能正确排序。
+    """
+    def slide_num(f: Path) -> int:
+        digits = "".join(c for c in f.stem if c.isdigit())
+        return int(digits) if digits else 0
+
+    # 收集所有 PNG，排除已处理的 cover.png 和纯数字命名文件
+    files = list(output_dir.glob("*.PNG")) + list(output_dir.glob("*.png"))
+    files = [f for f in files if f.stem != "cover" and not f.stem.isdigit()]
+    files = sorted(files, key=slide_num)
+
     paths = []
     for f in files:
-        num = int("".join(c for c in f.stem if c.isdigit()))
-        new_path = output_dir / f"{num:02d}.png"
+        n = slide_num(f)
+        new_path = output_dir / f"{n:02d}.png"
+        if new_path.exists():
+            new_path.unlink()
         f.rename(new_path)
         paths.append(new_path)
-    # 第一页另存为 cover.png
+
+    # 第一页复制一份为 cover.png
     if paths:
-        cover = paths[0].parent / "cover.png"
-        shutil.copy(paths[0], cover)
+        shutil.copy(paths[0], output_dir / "cover.png")
     return paths
 
 
