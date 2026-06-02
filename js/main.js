@@ -188,6 +188,116 @@ function initPost() {
   `;
 }
 
+/* ===== 数据观察列表（decks.html） ===== */
+function initDecksList() {
+  const list = document.getElementById('decks-list');
+  if (!list || typeof DECKS === 'undefined') return;
+
+  if (DECKS.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">∅</div>暂无 PPT</div>`;
+    return;
+  }
+
+  list.innerHTML = DECKS.map(d => `
+    <article class="deck-row" onclick="location.href='deck.html?id=${d.id}'">
+      <div class="deck-row-date">${formatDate(d.date)}</div>
+      <div class="deck-row-body">
+        <div class="deck-row-meta">
+          <span class="cat-badge">PPT · ${d.pages} 页</span>
+        </div>
+        <h3 class="deck-row-title">${d.title}</h3>
+        <p class="deck-row-subtitle">${d.subtitle}</p>
+        <p class="deck-row-summary">${d.summary}</p>
+        <div class="deck-row-tags">${d.tags.slice(0, 4).map(t => `<span>${t}</span>`).join('')}</div>
+      </div>
+      <div class="post-row-arrow">→</div>
+    </article>
+  `).join('');
+}
+
+/* ===== 数据观察详情（deck.html） ===== */
+function initDeckDetail() {
+  const container = document.getElementById('deck-container');
+  if (!container || typeof DECKS === 'undefined') return;
+
+  const id = parseInt(new URLSearchParams(location.search).get('id'));
+  const deck = DECKS.find(d => d.id === id);
+
+  if (!deck) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">∅</div>
+        <p style="margin-bottom:24px">PPT 不存在或已被删除</p>
+        <a href="decks.html" class="btn btn-outline">返回数据观察</a>
+      </div>`;
+    document.title = 'PPT 不存在 — Andy';
+    return;
+  }
+
+  document.title = `${deck.title} — Andy`;
+
+  const idx = DECKS.findIndex(d => d.id === id);
+  const prev = DECKS[idx + 1] || null;
+  const next = DECKS[idx - 1] || null;
+
+  // 在线预览 URL（用 Office Online Viewer，需要文件公网可访问）
+  const fileURL = `${location.origin}${location.pathname.replace(/[^/]*$/, '')}decks/${deck.file}`;
+  const previewURL = deck.pdf
+    ? `decks/${deck.pdf}`  // 如果有 PDF，直接用浏览器内置 PDF Viewer
+    : `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(fileURL)}`;
+
+  container.innerHTML = `
+    <a href="decks.html" class="post-detail-back fade-up">← Back to Data Watch</a>
+
+    <header class="post-detail-header fade-up fade-up-1">
+      <div class="post-detail-meta">
+        <span>${formatDate(deck.date)}</span>
+        <span class="dot">·</span>
+        <span class="cat-badge">PPT · ${deck.pages} 页</span>
+      </div>
+      <h1 class="post-detail-title">${deck.title}</h1>
+      <p class="deck-detail-subtitle">${deck.subtitle}</p>
+      <div class="post-detail-tags">${deck.tags.map(t => `<span>${t}</span>`).join('')}</div>
+    </header>
+
+    <div class="deck-actions fade-up fade-up-2">
+      <a href="decks/${deck.file}" class="btn btn-primary" download>⬇ 下载 PPT 源文件</a>
+      ${deck.pdf ? `<a href="decks/${deck.pdf}" class="btn btn-outline" target="_blank">📄 打开 PDF</a>` : ''}
+      <a href="${previewURL}" class="btn btn-outline" target="_blank">🔗 新窗口打开</a>
+    </div>
+
+    <div class="deck-preview fade-up fade-up-3">
+      <iframe src="${previewURL}"
+              width="100%"
+              height="640"
+              frameborder="0"
+              allowfullscreen
+              title="${deck.title}"></iframe>
+      <p class="deck-preview-note">
+        💡 预览由 Microsoft Office Online 提供，可能需要几秒加载。如显示异常，请使用上方按钮下载或新窗口打开。
+      </p>
+    </div>
+
+    <div class="deck-summary-block fade-up fade-up-4">
+      <h3 class="about-section-title">内容简介</h3>
+      <p style="font-size:16px;line-height:1.8;color:var(--color-text-2)">${deck.summary}</p>
+    </div>
+
+    <nav class="post-nav-bar">
+      <div class="post-nav-card prev ${prev ? '' : 'hidden'}"
+           ${prev ? `onclick="location.href='deck.html?id=${prev.id}'"` : ''}>
+        <div class="post-nav-label">← 上一份</div>
+        <div class="post-nav-title">${prev ? prev.title : ''}</div>
+      </div>
+      <div class="post-nav-card next ${next ? '' : 'hidden'}"
+           ${next ? `onclick="location.href='deck.html?id=${next.id}'"` : ''}>
+        <div class="post-nav-label">下一份 →</div>
+        <div class="post-nav-title">${next ? next.title : ''}</div>
+      </div>
+    </nav>
+  `;
+}
+
 /* ===== 启动 ===== */
 document.addEventListener('DOMContentLoaded', () => {
   updateThemeIcon();
@@ -200,4 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initIndex();
   initBlog();
   initPost();
+  initDecksList();
+  initDeckDetail();
 });

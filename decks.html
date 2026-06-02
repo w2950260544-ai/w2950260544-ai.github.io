@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>文章 — Andy</title>
+  <title>数据观察 — Andy</title>
+  <meta name="description" content="Andy 的数据观察 — 每日数字消费 PPT 研究日报" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -32,9 +33,18 @@
     <a href="about.html">关于</a>
   </nav>
 
-  <main class="post-detail">
-    <div class="prose-container">
-      <div id="post-container"></div>
+  <main>
+    <div class="container">
+      <div class="page-header fade-up">
+        <p class="page-header-label">Data Watch</p>
+        <h1 class="page-header-title">数据观察</h1>
+        <p class="page-header-desc">
+          每日数字消费市场研究日报，AI 自动生成 + 人工校审。
+          数据 · 趋势 · 行为 · 政策，一份就够。
+        </p>
+      </div>
+
+      <div class="decks-list fade-up fade-up-1" id="decks-list"></div>
     </div>
   </main>
 
@@ -53,7 +63,7 @@
     </div>
   </footer>
 
-  <script src="data/posts.js"></script>
+  <script src="data/decks.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
