@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>关于我 — Andy</title>
-  <meta name="description" content="了解 Andy — 正在学习 AI、设计和个人网站制作的人" />
+  <title>关于 — Andy</title>
+  <meta name="description" content="关于 Andy — 应用统计研究生，数字消费研究方向，AI 赋能创新者。" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -17,9 +17,7 @@
       <nav class="nav-links">
         <a href="index.html">首页</a>
         <a href="blog.html">博客</a>
-        <a href="works.html">作品</a>
         <a href="about.html">关于</a>
-        <a href="contact.html">联系</a>
       </nav>
       <div class="nav-actions">
         <button class="btn-theme" id="btn-theme" aria-label="切换主题">🌙</button>
@@ -30,107 +28,93 @@
   <nav class="mobile-nav" id="mobile-nav">
     <a href="index.html">首页</a>
     <a href="blog.html">博客</a>
-    <a href="works.html">作品</a>
     <a href="about.html">关于</a>
-    <a href="contact.html">联系</a>
   </nav>
 
   <main>
-    <div class="container">
+    <div class="about-wrap">
 
-      <!-- ===== Hero ===== -->
-      <div class="about-hero fade-up">
-        <div class="about-avatar-wrap">
-          <div class="about-avatar">
-            <!-- ✏️ 换成你的头像：
-                 <img src="images/avatar.jpg" alt="Andy" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
-                 然后删除下面的 emoji -->
-            🙂
-          </div>
-        </div>
-        <div>
-          <!-- ✏️ 修改：名字 -->
-          <h1 class="about-intro-name">Andy</h1>
-          <!-- ✏️ 修改：身份描述 -->
-          <p class="about-intro-role">🌏 中国 · AI 学习者 · 设计爱好者 · 个人网站实践者</p>
-          <!-- ✏️ 修改：个人简介 -->
-          <p class="about-intro-bio">
-            我是一个喜欢探索 AI、设计、写作和个人成长的人。<br />
-            我想通过这个博客记录自己的学习过程、生活思考、工具使用经验和作品。<br />
-            没有宏大的目标，只是想认真地把每一件有意思的事情记录下来。
-          </p>
-        </div>
-      </div>
-
-      <!-- ===== 兴趣爱好 ===== -->
-      <div class="about-section fade-up fade-up-2">
-        <h2 class="about-section-title">
-          <span class="icon">✨</span> 兴趣爱好
-        </h2>
-        <div class="interests-grid">
-          <!-- ✏️ 修改：你的兴趣标签 -->
-          <span class="interest-item">🤖 AI 与大模型</span>
-          <span class="interest-item">🎨 UI / 视觉设计</span>
-          <span class="interest-item">✍️ 写作与表达</span>
-          <span class="interest-item">📷 摄影与记录</span>
-          <span class="interest-item">🛠️ 科技工具</span>
-          <span class="interest-item">👗 潮流穿搭</span>
-          <span class="interest-item">🌱 个人成长</span>
-          <span class="interest-item">📚 阅读</span>
-          <span class="interest-item">🌐 个人网站</span>
-        </div>
-      </div>
-
-      <!-- ===== 博客方向 ===== -->
-      <div class="about-section fade-up fade-up-3">
-        <h2 class="about-section-title">
-          <span class="icon">📝</span> 这个博客写什么
-        </h2>
-        <div class="interests-grid">
-          <!-- ✏️ 修改：博客主题 -->
-          <span class="interest-item">🤖 AI 学习笔记</span>
-          <span class="interest-item">🎨 设计灵感</span>
-          <span class="interest-item">🛠️ 工具分享</span>
-          <span class="interest-item">🌱 个人成长</span>
-          <span class="interest-item">📷 生活记录</span>
-          <span class="interest-item">💭 随笔思考</span>
-        </div>
-      </div>
-
-      <!-- ===== 现在的目标 ===== -->
-      <div class="about-section fade-up fade-up-4">
-        <h2 class="about-section-title">
-          <span class="icon">🎯</span> 现在在做的事
-        </h2>
-        <div class="goals-list">
-          <!-- ✏️ 修改：你的目标 -->
-          <div class="goal-item">
-            <span class="goal-icon">🤖</span>
-            <div>系统学习 AI 应用开发，从 Prompt 工程到简单的 AI 产品搭建。</div>
-          </div>
-          <div class="goal-item">
-            <span class="goal-icon">🎨</span>
-            <div>学习 UI/UX 设计基础，能够独立完成简单的界面设计。</div>
-          </div>
-          <div class="goal-item">
-            <span class="goal-icon">🌐</span>
-            <div>从零开始做个人网站，把所有学到的东西都用上。</div>
-          </div>
-          <div class="goal-item">
-            <span class="goal-icon">✍️</span>
-            <div>坚持写作，每月至少发布 2 篇有质量的文章。</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== 底部 CTA ===== -->
-      <div class="about-section fade-up fade-up-5" style="text-align:center;border-top:none;padding-top:1rem">
-        <p style="color:var(--text-muted);margin-bottom:1.5rem;font-size:.95rem">
-          有什么想聊的，随时欢迎来找我 👋
+      <!-- ===== 自我介绍 ===== -->
+      <div class="fade-up">
+        <!-- ✏️ 名字 -->
+        <h1 class="about-intro-name">Andy · 安迪</h1>
+        <!-- ✏️ 身份描述 -->
+        <p class="about-intro-role">应用统计研究生 · 数字消费方向 · AI 赋能创新者</p>
+        <!-- ✏️ 个人简介 -->
+        <p class="about-intro-bio">
+          我是 Andy，一个相信「<strong>极致理想 × 超强执行</strong>」的人。<br /><br />
+          白天，我在校园里研究<strong>应用统计</strong>与<strong>数字消费</strong>行为；
+          晚上和周末，我把时间花在自己热爱的事情上——
+          用 AI 赋能学术研究、做设计、写文章、搭网站、观察生活。<br /><br />
+          微信公众号「<strong>安迪同学</strong>」与本博客是我对外的两扇窗。
+          这里既会有严谨的研究思考，也会有真实的生活记录。
         </p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-          <a href="contact.html" class="btn btn-primary">联系我</a>
-          <a href="blog.html" class="btn btn-outline">阅读博客</a>
+      </div>
+
+      <!-- ===== 兴趣领域 ===== -->
+      <div class="about-section fade-up fade-up-1">
+        <h2 class="about-section-title">我在关注 / Interests</h2>
+        <div class="tag-grid">
+          <span class="tag-chip">应用统计</span>
+          <span class="tag-chip">数字消费研究</span>
+          <span class="tag-chip">AI 应用</span>
+          <span class="tag-chip">Prompt 工程</span>
+          <span class="tag-chip">UI / 视觉设计</span>
+          <span class="tag-chip">写作与表达</span>
+          <span class="tag-chip">摄影与记录</span>
+          <span class="tag-chip">个人成长</span>
+          <span class="tag-chip">阅读</span>
+          <span class="tag-chip">潮流穿搭</span>
+        </div>
+      </div>
+
+      <!-- ===== 当前在做 ===== -->
+      <div class="about-section fade-up fade-up-2">
+        <h2 class="about-section-title">现在在做 / Now</h2>
+        <div class="goal-list">
+          <!-- ✏️ 每行：编号 + 内容 -->
+          <div class="goal-row">
+            <span class="goal-num">01</span>
+            <div class="goal-text">完成应用统计研究生学业，把「数字消费」方向研究深、研究透。</div>
+          </div>
+          <div class="goal-row">
+            <span class="goal-num">02</span>
+            <div class="goal-text">持续探索 AI 赋能学术研究的可能性，让效率与质量同时提升。</div>
+          </div>
+          <div class="goal-row">
+            <span class="goal-num">03</span>
+            <div class="goal-text">认真经营公众号「安迪同学」与本博客，把所思所学持续输出。</div>
+          </div>
+          <div class="goal-row">
+            <span class="goal-num">04</span>
+            <div class="goal-text">从零搭建并持续迭代个人网站，把学到的设计与开发知识落地。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 联系方式 ===== -->
+      <div class="contact-block fade-up fade-up-3">
+        <h3 class="contact-block-title">联系我</h3>
+        <p class="contact-block-desc">
+          欢迎交流应用统计、数字消费、AI 工具或个人网站相关话题。我会在 48 小时内回复邮件。
+        </p>
+        <div class="contact-list">
+          <!-- ✏️ 邮箱 -->
+          <a href="mailto:2950260544@qq.com" class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div class="contact-info">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">2950260544@qq.com</div>
+            </div>
+          </a>
+          <!-- ✏️ 微信公众号 -->
+          <div class="contact-item" style="cursor:default">
+            <div class="contact-icon">微</div>
+            <div class="contact-info">
+              <div class="contact-label">微信公众号</div>
+              <div class="contact-value">安迪同学</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -143,17 +127,15 @@
         <span class="footer-brand">Andy's Blog</span>
         <nav class="footer-links">
           <a href="blog.html">博客</a>
-          <a href="works.html">作品</a>
           <a href="about.html">关于</a>
-          <a href="contact.html">联系</a>
+          <a href="mailto:2950260544@qq.com">Email</a>
         </nav>
-        <span class="footer-copy">© 2026 Andy · 用好奇心探索世界</span>
+        <span class="footer-copy">© 2026 Andy · 公众号「安迪同学」</span>
       </div>
     </div>
   </footer>
 
   <script src="data/posts.js"></script>
-  <script src="data/works.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

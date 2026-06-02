@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>博客 — Andy</title>
-  <meta name="description" content="Andy 的博客文章列表，涵盖 AI 学习、设计、工具分享、个人成长等主题" />
+  <meta name="description" content="Andy 的博客文章 — AI 学习、应用统计、数字消费研究与生活随笔。" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -17,9 +17,7 @@
       <nav class="nav-links">
         <a href="index.html">首页</a>
         <a href="blog.html">博客</a>
-        <a href="works.html">作品</a>
         <a href="about.html">关于</a>
-        <a href="contact.html">联系</a>
       </nav>
       <div class="nav-actions">
         <button class="btn-theme" id="btn-theme" aria-label="切换主题">🌙</button>
@@ -30,25 +28,28 @@
   <nav class="mobile-nav" id="mobile-nav">
     <a href="index.html">首页</a>
     <a href="blog.html">博客</a>
-    <a href="works.html">作品</a>
     <a href="about.html">关于</a>
-    <a href="contact.html">联系</a>
   </nav>
 
   <main>
     <div class="container">
+
       <div class="page-header fade-up">
-        <p class="page-header-label">Blog</p>
-        <!-- ✏️ 修改：页面标题和描述 -->
-        <h1 class="page-header-title">博客文章</h1>
-        <p class="page-header-desc">记录 AI 学习过程、设计思考、工具使用心得，以及一些生活随笔。</p>
+        <p class="page-header-label">Writing</p>
+        <!-- ✏️ 修改：博客页标题 + 描述 -->
+        <h1 class="page-header-title">博客 / Journal</h1>
+        <p class="page-header-desc">
+          记录我的 AI 学习、应用统计研究、数字消费观察，
+          以及那些值得停下来想一想的事。
+        </p>
       </div>
 
       <!-- 分类筛选 -->
-      <div class="blog-filter" id="blog-filter"></div>
+      <div class="blog-filter fade-up fade-up-1" id="blog-filter"></div>
 
       <!-- 文章列表 -->
-      <div id="post-list"></div>
+      <div class="posts-list fade-up fade-up-2" id="post-list"></div>
+
     </div>
   </main>
 
@@ -58,17 +59,15 @@
         <span class="footer-brand">Andy's Blog</span>
         <nav class="footer-links">
           <a href="blog.html">博客</a>
-          <a href="works.html">作品</a>
           <a href="about.html">关于</a>
-          <a href="contact.html">联系</a>
+          <a href="mailto:2950260544@qq.com">Email</a>
         </nav>
-        <span class="footer-copy">© 2026 Andy · 用好奇心探索世界</span>
+        <span class="footer-copy">© 2026 Andy · 公众号「安迪同学」</span>
       </div>
     </div>
   </footer>
 
   <script src="data/posts.js"></script>
-  <script src="data/works.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
