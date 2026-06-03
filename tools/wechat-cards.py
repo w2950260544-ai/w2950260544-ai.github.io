@@ -173,6 +173,8 @@ def generate_copywriting(meta: dict, png_paths: list, output_dir: Path):
     tags = meta.get("tags", [])
     deck_id = meta.get("id", "")
     blog_url = f"https://w2950260544-ai.github.io/deck.html?id={deck_id}"
+    page_count = len(png_paths)
+    last_png = png_paths[-1].name if png_paths else f"{page_count:02d}.png"
 
     template = f"""# 公众号推文模板 · {date}
 
@@ -204,7 +206,7 @@ def generate_copywriting(meta: dict, png_paths: list, output_dir: Path):
 {summary}
 
 【完整 PPT】
-[在此插入图片：01.png ~ 09.png]
+[在此插入图片：01.png ~ {last_png}，共 {page_count} 张]
 
 ▼ 点击「阅读原文」查看高清完整版 PPT
 （含下载链接 + 在线翻页）
@@ -215,7 +217,7 @@ def generate_copywriting(meta: dict, png_paths: list, output_dir: Path):
 
 ### 方式 B：图片消息（更轻量）
 1. 公众号后台 → 草稿箱 → 新建图片
-2. 一次上传 1-9 张：选择 `01.png` ~ `09.png` 中精华页面
+2. 一次上传图片：从 `01.png` ~ `{last_png}`（共 {page_count} 张）中选精华页面
 3. 文字说明区域填：
 
 ```
@@ -268,8 +270,14 @@ def main():
     # 输出目录：以日期或文件名命名
     date_tag = meta.get("date") or pptx_path.stem
     output_dir = OUTPUT_ROOT / date_tag
+    # 健壮清理：先逐个删旧文件（资源管理器占用目录时 rmtree 会失败，故忽略错误）
     if output_dir.exists():
-        shutil.rmtree(output_dir)
+        for old in output_dir.glob("*"):
+            try:
+                old.unlink()
+            except Exception:
+                pass
+        shutil.rmtree(output_dir, ignore_errors=True)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # 1. 转换图片
