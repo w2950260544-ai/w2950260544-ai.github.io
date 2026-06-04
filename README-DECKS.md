@@ -1,7 +1,51 @@
 # 数据观察 / Data Watch — 每日 PPT 操作手册
 
 > 这份文档教你以后每天怎么把新的「数字消费研究日报 PPT」加到博客 + 推送公众号。
-> 整个流程 **5 分钟** 完成。
+
+---
+
+## ⚡ 一键发布（推荐 · 日常就用这个）
+
+不用再手动改文件了！**一条命令（或双击）搞定全部**。
+
+### 方式 A：双击 / 拖拽（最简单，零命令）
+- **双击 `publish.bat`** → 自动抓 `D:\Claude code\自动规划\` 里**最新的 PPT** 发布
+- 或把任意 PPT 文件**拖到 `publish.bat`** 上 → 发布那一份
+
+### 方式 B：命令行
+```bash
+cd C:\Users\86152\blog
+python tools/publish.py 数字消费研究日报_20260604.pptx
+```
+
+### 它自动帮你做完这 5 件事
+1. 从 PPT 提取 **标题 / 副标题 / 摘要 / 标签 / 页数**
+2. 复制 PPT 到 `decks/YYYY-MM-DD.pptx`（按文件名里的日期自动命名）
+3. 更新 `data/decks.js`（id 自动递增，新记录排最前）
+4. 生成公众号素材（图片 + 文案，存到 `tools/wechat-output/`）
+5. git 提交并推送上线
+
+### 想先看效果、不真发布？
+```bash
+python tools/publish.py xxx.pptx --dry-run
+```
+只打印提取到的元信息，**不改任何文件**。满意了再去掉 `--dry-run` 正式跑。
+
+### 其他参数
+| 参数 | 作用 |
+|------|------|
+| `--dry-run` | 只预览元信息，不改文件 |
+| `--skip-wechat` | 不生成公众号素材 |
+| `--no-push` | 只本地提交，自己用 GitHub Desktop 推 |
+
+### ⚠️ 三点说明
+1. **推送失败很正常**（国内网络访问 GitHub 不稳）：脚本会提示「请用 GitHub Desktop 点 Push」，打开点一下即可，文件都已备好。
+2. **公众号仍需手动发**：素材已自动生成在 `tools/wechat-output/日期/`，登录公众号贴上去即可（个人订阅号无法 API 自动发布）。
+3. **元信息可微调**：自动提取的摘要/标签若不满意，直接改 `data/decks.js` 对应字段再 push。
+
+---
+
+> 📖 下面是**手动流程和原理说明**，了解即可。日常发布请用上面的一键方式。
 
 ---
 
@@ -17,9 +61,11 @@ blog/
 │   └── decks.js            ← PPT 元数据列表（每加一份 PPT 改这个）
 ├── decks.html              ← 列表页
 ├── deck.html               ← 详情页（带在线预览 + 下载）
+├── publish.bat             ← ⚡ 一键发布（双击 / 拖 PPT 到它上面）
 └── tools/
+    ├── publish.py          ← ⚡ 一键发布脚本（核心逻辑）
     ├── wechat-cards.py     ← 公众号素材生成脚本
-    └── wechat-output/      ← 生成的图片 + 文案模板（不需要 push 到 GitHub）
+    └── wechat-output/      ← 生成的图片 + 文案模板（不会 push 到 GitHub）
 ```
 
 ---
